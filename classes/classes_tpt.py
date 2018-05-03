@@ -153,9 +153,9 @@ class affichage():
         bandeaurouge = pygame.image.load("battle/animation/Fightred.png").convert_alpha()
         pointinterro = pygame.image.load("battle/animation/pointintero.png").convert_alpha()
         feu = pygame.image.load("battle/animation/fire.png").convert_alpha()
-        feus=pygame.mixer.Sound("bruit/Fire1.ogg")
+        feus=pygame.mixer.Sound("son/bruit/Fire1.ogg")
         malediction = pygame.image.load("battle/animation/malediction.png").convert_alpha()
-        damage = pygame.mixer.Sound("bruit/Damage2.ogg")
+        damage = pygame.mixer.Sound("son/bruit/Damage2.ogg")
         fenetre.blit(fond, (0, 0))
         for i in range (42):
             for event in pygame.event.get():
@@ -367,9 +367,9 @@ class affichage():
         fouldebeunul = pygame.image.load("battle/animation/fireballkitomb.png").convert_alpha()
         fleche = pygame.image.load("battle/animation/fleche.png").convert_alpha()
         bouclier = pygame.image.load("battle/animation/bouclier.png").convert_alpha()
-        damage= pygame.mixer.Sound("bruit/Damage2.ogg")
-        potion=pygame.mixer.Sound("bruit/Heal3.ogg")
-        feu = pygame.mixer.Sound("bruit/Fire1.ogg")
+        damage= pygame.mixer.Sound("son/bruit/Damage2.ogg")
+        potion=pygame.mixer.Sound("son/bruit/Heal3.ogg")
+        feu = pygame.mixer.Sound("son/bruit/Fire1.ogg")
 
 
 
