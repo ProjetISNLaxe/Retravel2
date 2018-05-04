@@ -1,12 +1,12 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append("menu")
-import pygame, random, classes_shooter, sys, closemenu
+import pygame, random, sys
 from math import cos
 from pygame import *
-from constantes import *
+from shooter.constantes import *
 from pygame.locals import*
+from shooter.classes_shooter import *
+import menu.closemenu
 
 
 
@@ -47,9 +47,9 @@ def shooter(fenetre, glitch):
     clock = pygame.time.Clock()  # horloge interne
 
     fenetre_taille = fenetre.get_size()
-    fond = classes_shooter.imfond(fenetre_taille)  # charge l'image de fond
+    fond = imfond(fenetre_taille)  # charge l'image de fond
 
-    perso = classes_shooter.personnage(fenetre_taille, glitch)
+    perso = personnage(fenetre_taille, glitch)
 
     tirennemi = pygame.image.load(
         "shooter\\ennemi\\tir_ennemi.png").convert_alpha()  # charge les images des tirs
@@ -57,10 +57,10 @@ def shooter(fenetre, glitch):
     tir_mask = pygame.mask.from_surface(tir)
     tirennemi_mask = pygame.mask.from_surface(tirennemi)
 
-    ennemi_1 = classes_shooter.ennemi1(fenetre_taille)
-    ennemi_2 = classes_shooter.ennemi2(fenetre_taille)
+    ennemi_1 = ennemi1(fenetre_taille)
+    ennemi_2 = ennemi2(fenetre_taille)
 
-    miniboss = classes_shooter.clminiboss(fenetre_taille)
+    miniboss = clminiboss(fenetre_taille)
 
     bulle = pygame.image.load("shooter\\perso\\N-Ship_shield.png").convert_alpha()
 
@@ -75,7 +75,7 @@ def shooter(fenetre, glitch):
     score = SCORE_BASE  # Nombre d'ennemis mort
     deathennnemi = True
 
-    pygame.mixer.music.load("Sound/shooter.mp3")
+    pygame.mixer.music.load("son/Sound/shooter.mp3")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play()
 
@@ -123,7 +123,7 @@ def shooter(fenetre, glitch):
                     ennemi_1.inexplosion = True
                     ennemi_1.explosion_rect = Rect(ennemi_1.rect.x - 25, ennemi_1.rect.y - 25, 192, 192)
                     # On anime l'explosion
-                    d = classes_shooter.randrange(40, 500)  # On fais  l'ennemi a une  sur x
+                    d = randrange(40, 500)  # On fais  l'ennemi a une  sur x
                     ennemi_1.rect = Rect(d, -ennemi_1.rect.y - 200, 64, 100)
                     perso.tirx[k] = -555  # On fais disparaitre le tir
                     score += 1  # On  le score
@@ -134,7 +134,7 @@ def shooter(fenetre, glitch):
                         perso.tiry[b] > 10 and ennemi_2.alive:  # colision entre projectille et ennemi.
                     ennemi_2.inexplosion = True  # On anime l'explosion
                     ennemi_2.explosion_rect = Rect(ennemi_2.rect.x - 25, ennemi_2.rect.y - 25, 192, 192)
-                    o = classes_shooter.randrange(40, 500)  # On fais spawner l'ennemi a une coordonee sur x
+                    o = randrange(40, 500)  # On fais spawner l'ennemi a une coordonee sur x
                     ennemi_2.rect = Rect(o, -100, 64, 130)
                     perso.tirx[b] = -555  # On fais disparaitre le tir
                     score += 1  # On incremente le score
@@ -437,9 +437,9 @@ def endless(fenetre, glitch):
 
     groupesprite = pygame.sprite.Group()
     fenetre_taille = fenetre.get_size()
-    fond = classes_shooter.imfond(fenetre_taille)  # charge l'image de fond
+    fond = imfond(fenetre_taille)  # charge l'image de fond
 
-    perso = classes_shooter.personnage(fenetre_taille, glitch)
+    perso = personnage(fenetre_taille, glitch)
 
     tirennemi = pygame.image.load(
         "shooter\\ennemi\\tir_ennemi.png").convert_alpha()  # charge les images des tirs
@@ -447,11 +447,11 @@ def endless(fenetre, glitch):
     tir_mask = pygame.mask.from_surface(tir)
     tirennemi_mask = pygame.mask.from_surface(tirennemi)
 
-    ennemi_1 = classes_shooter.ennemi1(fenetre_taille)
-    ennemi_2 = classes_shooter.ennemi2(fenetre_taille)
+    ennemi_1 = ennemi1(fenetre_taille)
+    ennemi_2 = ennemi2(fenetre_taille)
     groupesprite.add(ennemi_1, ennemi_2, perso)
 
-    miniboss = classes_shooter.clminiboss(fenetre_taille)
+    miniboss = clminiboss(fenetre_taille)
 
     bulle = pygame.image.load("shooter\\perso\\N-Ship_shield.png").convert_alpha()
 
@@ -473,7 +473,7 @@ def endless(fenetre, glitch):
     compteur = 0
     test = True
     deathennnemi = False
-    pygame.mixer.music.load("Sound/shooter.mp3")
+    pygame.mixer.music.load("son/Sound/shooter.mp3")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play()
     while 1:  # les deplacements
@@ -520,7 +520,7 @@ def endless(fenetre, glitch):
                     ennemi_1.inexplosion = True
                     ennemi_1.explosion_rect = Rect(ennemi_1.rect.x - 25, ennemi_1.rect.y - 25, 192, 192)
                     # On anime l'explosion
-                    d = classes_shooter.randrange(40, 500)  # On fais  l'ennemi a une  sur x
+                    d = randrange(40, 500)  # On fais  l'ennemi a une  sur x
                     ennemi_1.rect = Rect(d, -ennemi_1.rect.y - 200, 64, 100)
                     perso.tirx[k] = -555  # On fais disparaitre le tir
                     score += 1  # On  le score
@@ -531,7 +531,7 @@ def endless(fenetre, glitch):
                         perso.tiry[b] > 10 and ennemi_2.alive:  # colision entre projectille et ennemi.
                     ennemi_2.inexplosion = True  # On anime l'explosion
                     ennemi_2.explosion_rect = Rect(ennemi_2.rect.x - 25, ennemi_2.rect.y - 25, 192, 192)
-                    o = classes_shooter.randrange(40, 500)  # On fais spawner l'ennemi a une coordonee sur x
+                    o = randrange(40, 500)  # On fais spawner l'ennemi a une coordonee sur x
                     ennemi_2.rect = Rect(o, -100, 64, 130)
                     perso.tirx[b] = -555  # On fais disparaitre le tir
                     score += 1  # On incremente le score

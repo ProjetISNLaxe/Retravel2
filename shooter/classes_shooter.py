@@ -6,7 +6,7 @@ from pygame.locals import *
 from random import randrange
 from math import cos
 import time
-from constantes import*
+from shooter.constantes import*
 
 
 class personnage(pygame.sprite.Sprite):
@@ -61,9 +61,9 @@ class personnage(pygame.sprite.Sprite):
         self.test=False
         self.test1=True
         self.immortel=False
-        self.shootsound=pygame.mixer.Sound("Sound/shoot.ogg")
+        self.shootsound=pygame.mixer.Sound("son/Sound/shoot.ogg")
         self.shootsound.set_volume(0.2)
-        self.boom = pygame.mixer.Sound("Sound/boom.ogg")
+        self.boom = pygame.mixer.Sound("son/Sound/boom.ogg")
         self.boom.set_volume(0.3)
 
 
@@ -200,7 +200,7 @@ class ennemi(pygame.sprite.Sprite):
         self.size=self.image.get_size()
         self.incollision=False
         self.alive=False
-        self.boom = pygame.mixer.Sound("Sound/boom.ogg")
+        self.boom = pygame.mixer.Sound("son/Sound/boom.ogg")
         self.boom.set_volume(0.3)
 
     def respawn(self):
@@ -295,7 +295,7 @@ class ennemi2(ennemi):
         self.test=False
         self.speed_y=VITESSE_ENNEMI_2_Y
         self.speed_x=VITESSE_ENNEMI_2_X
-        self.shootsound = pygame.mixer.Sound("Sound/shootenemy2.ogg")
+        self.shootsound = pygame.mixer.Sound("son/Sound/shootenemy2.ogg")
         self.shootsound.set_volume(0.2)
 
     def move(self, score):
@@ -527,11 +527,11 @@ class clminiboss(pygame.sprite.Sprite):
         self.laseer=False
         self.timeb=time.time()
         self.timec=0
-        self.energiebowlsound=pygame.mixer.Sound("Sound/energyball.ogg")
+        self.energiebowlsound=pygame.mixer.Sound("son/Sound/energyball.ogg")
         self.energiebowlsound.set_volume(0.3)
-        self.shootsound = pygame.mixer.Sound("Sound/shootenemy2.ogg")
+        self.shootsound = pygame.mixer.Sound("son/Sound/shootenemy2.ogg")
         self.shootsound.set_volume(0.1)
-        self.arcele = pygame.mixer.Sound("Sound/electrik.wav")
+        self.arcele = pygame.mixer.Sound("son/Sound/electrik.wav")
         self.arcele.set_volume(0.1)
          
     def perdvie(self):
