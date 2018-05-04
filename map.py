@@ -1,13 +1,11 @@
-
-import sys
-
-import pygame, sys, combatV3, shop, quete, time, printinvent, dialogue, classes_map, closemenu
+import pygame, sys, quete, time
 from pygame.locals import *
-from perso_classes import *
-
-listequetefi = open("menu/quetes/liste", "r")
-listequete = listequetefi.read().split("\'")  # Charger la liste des quêtes
-listequetefi.close()
+from classes.perso_classes import *
+import menu.closemenu as closemenu, menu.printinvent as printinvent, menu.dialogue as dialogue, menu.shop as shop
+import battle.combatV3
+import classes.classes_map as classes_map
+with open("menu/quetes/liste", "r") as listequetefi:
+    listequete=listequetefi.read().split("\'")
 
 
 def selecmap(fenetre):
@@ -17,9 +15,8 @@ def selecmap(fenetre):
     pygame.mixer.music.set_volume(0)
     pygame.mixer.music.play()
     chargement()
-    fichier = open("save1/map", "r")
-    mapactive = fichier.read()  # On ouvre le fichier de sauvegarde
-    fichier.close()
+    with open("save1/map", "r") as fichier:
+        mapactive = fichier.read()
     if mapactive == "capitale":
         capitale(fenetre)
     if mapactive == "maison_1":
@@ -53,16 +50,6 @@ def chargement():
     chateau_2Fload = False
 
 
-def save(perso, mapcl, i):
-    maptransi = open("save1/map", "w")
-    maptransi.write(mapcl.transili[i])
-    maptransi.close()
-    pospeso = open("save1/pospeso/pospesomaison_1", "w")
-    pospeso.write(str(perso.rect.x) + "," + str(perso.rect.y))
-    pospeso.close()
-    posmap = open("save1/posmap/posmapmaison_1", "w")
-    posmap.write(str(mapcl.rect.x) + "," + str(mapcl.rect.y))
-    posmap.close()
 
 
 def capitale(fenetre):
@@ -239,7 +226,12 @@ def maison_1(fenetre):
         if tkey[K_e]:
             for i in range(len(mapcl.transili)):
                 if mapcl.masktransi[i].overlap(perso.mask, (perso.rect.x - mapcl.rect.x, perso.rect.y - mapcl.rect.y)):
-                    save(perso, mapcl, i)
+                    with open("save1/map", "w") as maptransi:
+                        maptransi.write(mapcl.transili[i])
+                    with open("save1/pospeso/pospesomaison_1", "w") as pospeso:
+                        pospeso.write(str(perso.rect.x) + "," + str(perso.rect.y))
+                    with open("save1/posmap/posmapmaison_1", "w") as posmap:
+                        posmap.write(str(mapcl.rect.x) + "," + str(mapcl.rect.y))
                     quete.quetes(fenetre)
                     fenetre.fill((0, 0, 0))
                     fenetre.blit(myfont.render("CHARGEMENT...", False, (1, 44, 166)), (500, 50))
@@ -385,7 +377,7 @@ def maison_2(fenetre):
                 if maskpnj[i].overlap(perso.mask,
                                       (perso.rect.x - position.x, perso.rect.y - position.y)):
                     quete.quetes(fenetre)
-                    dialogue.dialogue(fenetre, pnjli[i])
+                    menu.dialogue.dialogue(fenetre, pnjli[i])
 
         try:
             fenetre.blit(image_dessus, position)
@@ -941,17 +933,15 @@ def chateau_2F(fenetre):
         goldf.close()
         fenetre.blit(image, position)
         fenetre.blit(perso.imageperso, perso.rect)
-        try:
-            for i in range(len(pnjli)):
+
+        for i in range(len(pnjli)):
                 fenetre.blit(imagepnj[i], position)
                 if tkey[K_f]:
 
                     if maskpnj[i].overlap(perso.mask,
                                           (perso.rect.x - position.x, perso.rect.y - position.y)):
                         quete.quetes(fenetre)
-                        dialogue(fenetre, pnjli[i])
-        except:
-            None
+                        dialogue.dialogue(fenetre, pnjli[i])
 
         fenetre.blit(image_dessus, position)
 
@@ -1323,11 +1313,11 @@ def mapdepart(fenetre):
             affichetext2 = True
             if tkey[K_f]:
                 if jeanma == "1":
-                    dialogue.dialogue(fenetre, "jeanma")
+                    menu.dialogue.dialogue(fenetre, "jeanma")
                     quete.quetes(fenetre)
 
                 else:
-                    dialogue.jeanmadia(fenetre)
+                    menu.dialogue.jeanmadia(fenetre)
                     quete.quetes(fenetre)
                     jeanma = "1"
         else:

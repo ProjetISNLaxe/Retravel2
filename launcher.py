@@ -6,12 +6,7 @@
 import pygame
 from pygame.locals import *
 import sys
-sys.path.append("classes")
-sys.path.append("shooter")
-sys.path.append("option")
-sys.path.append("menu")
-sys.path.append("battle")
-sys.path.append("minijeu")
+
 
 
 pygame.init()
@@ -27,8 +22,8 @@ pygame.display.set_caption("Retravel")
 icon = pygame.image.load("logo.png").convert_alpha()
 pygame.display.set_icon(icon)
 
-from shooter_fonction import *
-from perso_classes import *
+from shooter.shooter_fonction import *
+from classes.perso_classes import *
 from map import *
 from pygame import *
 from option import *
