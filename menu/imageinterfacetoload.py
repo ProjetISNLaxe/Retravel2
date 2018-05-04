@@ -32,3 +32,4 @@ for i in range(3):
 onglet=ongletli[0]
 alphabet="abcdefghijklmnopqrstuvwxyz"
 alphabet=list(alphabet)
+inventaireimage = pygame.image.load("menu/inventory/objetinventaire.png").convert_alpha()

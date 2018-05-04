@@ -1,9 +1,9 @@
-import pygame
-from imageinterfacetoload import *
+import pygame, quete
+from menu.imageinterfacetoload import *
 from pygame.locals import *
 from random import randint
-import quete, closemenu, blackjack, spaceinvaders, tetris2
-
+import menu.closemenu as closemenu
+import minijeu.blackjack, minijeu.spaceinvaders, minijeu.tetris2, minijeu.snake
 
 def dialogue(fenetre, pnj):
     """Fonction qui permet l'affichage des dialogues pnj perso"""
@@ -48,8 +48,17 @@ def dialogue(fenetre, pnj):
         for event in pygame.event.get():
             if event.type == QUIT:
                 closemenu.closemenu(fenetre)
+                fenetre.blit(fond, (0, 0))
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    return
+                if event.key == K_UP:
+                    return
+                if event.key == K_RIGHT:
+                    return
+                if event.key == K_LEFT:
+                    return
+                if event.key == K_DOWN:
                     return
             if event.type == MOUSEMOTION:
                 if event.type == MOUSEMOTION:
@@ -60,29 +69,29 @@ def dialogue(fenetre, pnj):
 
                     if testrect.colliderect(bouton1rect):
                         minijeufi=open("menu/pnj/"+pnj+"/minijeu", "r")
-                        minijeu=minijeufi.read()
+                        minijeure=minijeufi.read()
                         minijeufi.close()
-                        if minijeu=="snake":
-                            quete.snake(fenetre)
+                        if minijeure=="snake":
+                            minijeu.snake.snake(fenetre)
                             fenetre.blit(fond, (0, 0))
-                        if minijeu=="blackjack":
+                        if minijeure=="blackjack":
                             if nbror >= 10:
-                                blackjack.blackjack(fenetre)
+                                minijeu.blackjack.blackjack(fenetre)
                                 fenetre.blit(fond,(0, 0))
                                 nbrorfi = open("save1/invent/cpic", "r")
                                 nbror = int(nbrorfi.read())
                                 nbrorfi.close()
                             else:
                                 text="Vous n'avez pas assez d'argent pour une partie de BlackJack, désolé"
-                        if minijeu=="spaceinvaders":
-                            spaceinvaders.SpaceInvaders(fenetre).run()
+                        if minijeure=="spaceinvaders":
+                            minijeu.spaceinvaders.SpaceInvaders(fenetre).run()
                             fenetre.blit(fond, (0, 0))
                             pygame.mixer.music.load("son/Sound/day.mp3")
                             pygame.mixer.music.queue("son/Sound/RPG.mp3")
                             pygame.mixer.music.set_volume(0.3)
                             pygame.mixer.music.play()
-                        if minijeu=="tetris":
-                            tetris2 .tetris(fenetre)
+                        if minijeure=="tetris":
+                            minijeu.tetris2.tetris(fenetre)
                             fenetre.blit(fond, (0, 0))
                             pygame.mixer.music.load("son/Sound/day.mp3")
                             pygame.mixer.music.queue("son/Sound/RPG.mp3")
@@ -186,8 +195,18 @@ def affichquete(fenetre, pnj):
         for event in pygame.event.get():
             if event.type == QUIT:
                 closemenu.closemenu(fenetre)
+                fenetre.blit(fond, (0, 0))
+
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    return
+                if event.key == K_UP:
+                    return
+                if event.key == K_RIGHT:
+                    return
+                if event.key == K_LEFT:
+                    return
+                if event.key == K_DOWN:
                     return
             if event.type == MOUSEMOTION:
                 if event.type == MOUSEMOTION:
@@ -304,8 +323,17 @@ def jeanmadia(fenetre):
         for event in pygame.event.get():
             if event.type == QUIT:
                 closemenu.closemenu(fenetre)
+                fenetre.blit(fond, (0, 0))
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    return
+                if event.key == K_UP:
+                    return
+                if event.key == K_RIGHT:
+                    return
+                if event.key == K_LEFT:
+                    return
+                if event.key == K_DOWN:
                     return
             if event.type == MOUSEMOTION:
                 if event.type == MOUSEMOTION:

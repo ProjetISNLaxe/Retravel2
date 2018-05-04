@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from imageinterfacetoload import test, testrect, testmask, police, ouverture, fermeture
+from menu.imageinterfacetoload import test, testrect, testmask, police, ouverture, fermeture
 
 def closemenu(fenetre):
     """Fonction qui permet l'affichage de la fenetre de confirmation de fermeture"""

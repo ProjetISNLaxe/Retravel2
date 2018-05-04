@@ -1,48 +1,48 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import menu.closemenu as closemenu
 import pygame
 from pygame.locals import *
-from shooter_fonction import *
-from perso_classes import *
+from shooter.shooter_fonction import *
+from classes.perso_classes import *
 from map import *
 from pygame import *
 from option import *
 from sys import exit
-from imageinterfacetoload import *
-from save import *
+from menu.imageinterfacetoload import *
+from battle.save import *
 
 def arbre_compet(fenetre):
     chargementsauvegarde()
-    bouclier = pygame.image.load("competance/compdef.png").convert_alpha()
+    bouclier = pygame.image.load("menu/competance/compdef.png").convert_alpha()
     boucliermask = pygame.mask.from_surface(bouclier)
-    coeur = pygame.image.load("competance/compvie.png").convert_alpha()
+    coeur = pygame.image.load("menu/competance/compvie.png").convert_alpha()
     coeurmask = pygame.mask.from_surface(coeur)
-    degat = pygame.image.load("competance/compatk.png").convert_alpha()
+    degat = pygame.image.load("menu/competance/compatk.png").convert_alpha()
     degatmask = pygame.mask.from_surface(degat)
-    coeur1 = pygame.image.load("competance/compvie.png").convert_alpha()
+    coeur1 = pygame.image.load("menu/competance/compvie.png").convert_alpha()
     coeurmask1 = pygame.mask.from_surface(coeur1)
-    degat1 = pygame.image.load("competance/compatk.png").convert_alpha()
+    degat1 = pygame.image.load("menu/competance/compatk.png").convert_alpha()
     degatmask1 = pygame.mask.from_surface(degat1)
-    coeur2 = pygame.image.load("competance/compvie.png").convert_alpha()
+    coeur2 = pygame.image.load("menu/competance/compvie.png").convert_alpha()
     coeurmask2 = pygame.mask.from_surface(coeur2)
-    degat2 = pygame.image.load("competance/compatk.png").convert_alpha()
+    degat2 = pygame.image.load("menu/competance/compatk.png").convert_alpha()
     degatmask2 = pygame.mask.from_surface(degat2)
-    mana = pygame.image.load("competance/compfire.png").convert_alpha()
+    mana = pygame.image.load("menu/competance/compfire.png").convert_alpha()
     manamask = pygame.mask.from_surface(mana)
-    poison = pygame.image.load("competance/compdodge.png").convert_alpha()
+    poison = pygame.image.load("menu/competance/compdodge.png").convert_alpha()
     poisonmask = pygame.mask.from_surface(poison)
-    perso0 = pygame.image.load("competance/teteperso0.png").convert_alpha()
-    perso1 = pygame.image.load("competance/teteperso1.png").convert_alpha()
-    perso2 = pygame.image.load("competance/teteperso2.png").convert_alpha()
+    perso0 = pygame.image.load("menu/competance/teteperso0.png").convert_alpha()
+    perso1 = pygame.image.load("menu/competance/teteperso1.png").convert_alpha()
+    perso2 = pygame.image.load("menu/competance/teteperso2.png").convert_alpha()
 
-    test = pygame.image.load("launcher\pixelgitan.png").convert_alpha()
+    test = pygame.image.load("launcher/pixelgitan.png").convert_alpha()
     mask = pygame.mask.from_surface(test)
     clock = pygame.time.Clock()
     perso="joueur"
-    fond = pygame.image.load("competance/arbrecomp.png").convert_alpha()
-    fond2=pygame.image.load("inventory/fond.jpg").convert()
+    fond = pygame.image.load("menu/competance/arbrecomp.png").convert_alpha()
+    fond2=pygame.image.load("menu/inventory/fond.jpg").convert()
     x=0
     y=0
     sinatra.active = True
@@ -52,8 +52,7 @@ def arbre_compet(fenetre):
         save.close()
         for event in pygame.event.get():
             if event.type == QUIT:  # pour pouvoir quitter le jeux
-                pygame.quit()
-                exit()
+                closemenu.closemenu(fenetre)
             if event.type == KEYDOWN:  # les deplacements
                 if event.key == K_ESCAPE:
                     savetpt()

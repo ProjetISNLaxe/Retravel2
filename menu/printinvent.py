@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
-from imageinterfacetoload import *
-import arbre, closemenu
+from menu.imageinterfacetoload import *
+import menu.arbre, menu.closemenu
 
 
 def printinvent(fenetre):
@@ -24,7 +24,6 @@ def printinvent(fenetre):
 def invent(fenetre):
     """Fonction qui affiche l'inventaire du perso"""
     ouverture.play()
-    clock = pygame.time.Clock()
     fond = pygame.image.load("menu/inventory/fond.jpg").convert()  # On met en fond un screen de la situation a cause de l'alpha très important
     follow = False
     curseurrect.x = 769  # Position curseur
@@ -71,7 +70,7 @@ def invent(fenetre):
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
-                closemenu.closemenu(fenetre)
+                menu.closemenu.closemenu(fenetre)
             if event.type == KEYDOWN:
                 if event.key == K_i:
                     fermeture.play()
@@ -79,6 +78,7 @@ def invent(fenetre):
                     suitef.write("invent")  # On quitte l'inventaire
                     suitef.close()
                     return "return"
+
                 if event.key == K_DOWN and curseurrect.y < 558:
                     curseurrect.y += 99 / 1.5 / len(inventaire)  # On baisse le curseur
                     for i in range(len(objetinventairerect)):
@@ -89,7 +89,7 @@ def invent(fenetre):
                     for i in range(len(objetinventairerect)):
                         objetinventairerect[i][1] += 98 / 1.5 / len(inventaire)
                 if event.key == K_TAB:
-                    arbre.arbre_compet(fenetre)
+                    menu.arbre.arbre_compet(fenetre)
             if event.type == MOUSEMOTION:
                 testrect.x = event.pos[0]
                 testrect.y = event.pos[1]  # on capture les positions de la souris et on l'attribut au pixel test
@@ -167,9 +167,9 @@ def invent(fenetre):
         bandeauhaut = pygame.image.load("menu/inventory/bandeaumoney+quete.png").convert_alpha()  # On raffraichis la barre
         if queteactive != "":  # Si il y a une quete, on blit la description
             if queteactive != "Jeanma":
-                bandeauhaut.blit(police.render(queteactive + " : " + mission, True, (0,0,0)), (10, 10))
+                bandeauhaut.blit(police.render(queteactive + " : " + mission, True, (53, 255, 251)), (10, 10))
             else:
-                bandeauhaut.blit(police.render("Histoire" + " : " + mission, True, (0,0,0)), (10, 10))
+                bandeauhaut.blit(police.render("Histoire" + " : " + mission, True, (53, 255, 251)), (10, 10))
 
         for i in range(len(inventaire)):  # On affiche la description des objets
             objetinventaireimage[i].blit(inventaire[i][0], (10, 8))
@@ -179,7 +179,6 @@ def invent(fenetre):
             bandeauhaut.blit(listechiffre[int(lior[i])], (720 - 22 * i, 5))
 
         fenetre.blit(curseur, curseurrect)
-        clock.tick(60)
         pygame.display.flip()
 
 
@@ -187,7 +186,6 @@ def invent(fenetre):
 def queteinv(fenetre):
     ouverture.play()
     """ Fonction qui affiche la liste des quêtes """
-    clock = pygame.time.Clock()
     fond = pygame.image.load("menu/inventory/fond.jpg").convert()
     follow = False
     curseurrect.x = 769
@@ -225,7 +223,7 @@ def queteinv(fenetre):
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
-                closemenu.closemenu(fenetre)
+                menu.closemenu.closemenu(fenetre)
             if event.type == KEYDOWN:
                 if event.key == K_i:
                     suitef = open("save1\inventsave.rtvl", "w")
@@ -244,7 +242,7 @@ def queteinv(fenetre):
                     for i in range(len(objetqueterect)):
                         objetqueterect[i][1] += 98 / 1.5 / len(quete)
                 if event.key == K_TAB:
-                    arbre.arbre_compet(fenetre)
+                    menu.arbre.arbre_compet(fenetre)
             if event.type == MOUSEMOTION:
                 testrect.x = event.pos[0]
                 testrect.y = event.pos[1]
@@ -342,5 +340,4 @@ def queteinv(fenetre):
             bandeauhaut.blit(listechiffre[int(lior[i])], (720 - 22 * i, 5))
 
         fenetre.blit(curseur, curseurrect)
-        clock.tick(60)
         pygame.display.flip()
