@@ -1,7 +1,7 @@
 import pygame
 import math
 import copy
-from Shapes import Shape
+from minijeu.tetris.Shapes import Shape
 from operator import itemgetter
 
 # Main Bot class
