@@ -1,11 +1,9 @@
 import pygame
 import sys
-sys.path.append("classes")
 from pygame.locals import *
 from random import *
 import time
-
-import classes_tpt
+from classes.classes_tpt import *
 
 
 def savetpt():

@@ -1,9 +1,10 @@
-﻿import pygame, closemenu
+﻿import pygame
 from pygame.locals import *
 from random import *
 import time
-from classes_tpt import *
-from save import *
+from classes.classes_tpt import *
+from battle.save import *
+import menu.closemenu
 
 pygame.init()
 
@@ -169,7 +170,7 @@ def menuobjet(choix, a, c):
 
 
 def tourpartour(): # fonction principale avec variables
-    fichier = open("quetes/mobmort", "r")
+    fichier = open("menu/quetes/mobmort", "r")
     nomennemie = fichier.read()
     fichier.close()
     if nomennemie=="":
