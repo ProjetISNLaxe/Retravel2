@@ -1,5 +1,5 @@
-
-import pygame, random, copy, closemenu
+import menu.closemenu
+import pygame, random, copy
 from pygame.locals import *
 
 cBack = pygame.image.load('minijeu/Blackjack/cartes/cardback.png')

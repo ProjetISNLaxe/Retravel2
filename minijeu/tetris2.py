@@ -1,15 +1,14 @@
 from random import *
 import sys
-
-sys.path.append("minijeu/tetris")
-from Shapes import Shape
-from Area import Area
-from Display import Hud
-from Menu import Menu
-from Gameover import Gameover
-from Bot import Bot
-import pygame, closemenu
+from minijeu.tetris.Shapes import Shape
+from minijeu.tetris.Area import Area
+from minijeu.tetris.Display import Hud
+from minijeu.tetris.Menu import Menu
+from minijeu.tetris.Gameover import Gameover
+from minijeu.tetris.Bot import Bot
+import pygame
 from pygame.locals import *
+import menu.closemenu as closemenu
 
 # checks the user input and implements proper tests and movements in correspondance
 # with the user's input
@@ -44,8 +43,7 @@ def menu_input(menu, surface):
     while not menu.gameStart:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                closemenu.closemenu(fenetre)
 
             if event.type == pygame.KEYDOWN:
 
@@ -55,7 +53,7 @@ def menu_input(menu, surface):
 
 
 def tetris(fenetre):
-    pygame.mixer.music.load("Sound/tetris.ogg")
+    pygame.mixer.music.load("son/Sound/tetris.ogg")
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1)
     bot = Bot()

@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
-import random, closemenu
+import random
+import menu.closemenu
 
 class SpaceInvaders:
     def __init__(self, fenetre):
