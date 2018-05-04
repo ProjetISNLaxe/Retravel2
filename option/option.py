@@ -8,7 +8,7 @@ import defkey
 from aff import affichetouche
 import sys
 import quete
-from save import resetsauvegarde
+from battle.save import resetsauvegarde
 
 
 def option(fenetre):
