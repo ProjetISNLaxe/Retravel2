@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from random import *
-from combatV3 import *
+from battle.combatV3 import *
 import random
 
 

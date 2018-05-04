@@ -1,7 +1,7 @@
 import pygame
-from perso_classes import *
+from classes.perso_classes import *
 import quete
-from dialogue import dialogue
+from menu.dialogue import dialogue
 
 
 class classmapbasique():

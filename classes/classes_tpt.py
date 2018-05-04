@@ -140,13 +140,13 @@ class affichage():
         fichier.close()
 
         if map == "capitale":
-            fond = pygame.image.load("Battlebacks/009-CastleTown01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/009-CastleTown01.jpg")
         elif map == "chateau_3F":
-            fond = pygame.image.load("Battlebacks/026-Castle02.jpg")
+            fond = pygame.image.load("battle/Battlebacks/026-Castle02.jpg")
         elif map == "caverne":
-            fond = pygame.image.load("Battlebacks/043-Cave01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
-            fond = pygame.image.load("Battlebacks/005-Beach01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
         clock = pygame.time.Clock()
         my_font = pygame.font.SysFont("Calibri", 36)
         bandeaubleue = pygame.image.load("battle/animation/Fightblue.png").convert_alpha()
@@ -258,13 +258,13 @@ class affichage():
         fichier.close()
 
         if map == "capitale":
-            fond = pygame.image.load("Battlebacks/009-CastleTown01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/009-CastleTown01.jpg")
         elif map == "chateau_3F":
-            fond = pygame.image.load("Battlebacks/026-Castle02.jpg")
+            fond = pygame.image.load("battle/Battlebacks/026-Castle02.jpg")
         elif map == "caverne":
-            fond = pygame.image.load("Battlebacks/043-Cave01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
-            fond = pygame.image.load("Battlebacks/005-Beach01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
 
         position1 = (610, 180)  # la position du perso qui jou
         position2 = (625, 100)  # la position du perso qui attent
@@ -352,13 +352,13 @@ class affichage():
         fichier.close()
 
         if map == "capitale":
-            fond = pygame.image.load("Battlebacks/009-CastleTown01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/009-CastleTown01.jpg")
         elif map == "chateau_3F":
-            fond = pygame.image.load("Battlebacks/026-Castle02.jpg")
+            fond = pygame.image.load("battle/Battlebacks/026-Castle02.jpg")
         elif map == "caverne":
-            fond = pygame.image.load("Battlebacks/043-Cave01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
-            fond = pygame.image.load("Battlebacks/005-Beach01.jpg")
+            fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
         clock = pygame.time.Clock()
         my_font = pygame.font.SysFont("Calibri", 36)
         bandeaubleue = pygame.image.load("battle/animation/Fightblue.png").convert_alpha()
