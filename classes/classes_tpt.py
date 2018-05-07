@@ -1,8 +1,10 @@
-﻿import pygame
+﻿import pygame, respawn
 from pygame.locals import *
 from random import *
 import random
 import time
+import menu.closemenu as closemenu
+import maps
 
 pygame.init()
 fenetre = pygame.display.set_mode((800, 600))
@@ -42,13 +44,29 @@ class attaqueennemi():
         if sinatra.active:
             if sinatra.vie == 0 and david.vie == 0 and perso_joueur.vie == 0:
                 combat.etat = "mort"
-                pygame.quit()
-                exit()
+                respawn.respawn()
+                fondu=pygame.Surface((800,600))
+                fondu.set_alpha(0)
+                fondu.fill((0,0,0))
+                for i in range (255):
+                    fenetre.blit(fondu,(0,0))
+                    fondu.set_alpha(i)
+                    pygame.display.flip()
+
+                maps.selecmap(fenetre)
+
         elif david.vie == 0 and perso_joueur.vie == 0:
             combat.etat = "mort"
-            pygame.quit()
-            exit()
+            respawn.respawn()
+            fondu = pygame.Surface((800, 600))
+            fondu.set_alpha(0)
+            fondu.fill((0, 0, 0))
+            for i in range(255):
+                fenetre.blit(fondu, (0, 0))
+                fondu.set_alpha(i)
+                pygame.display.flip()
 
+            maps.selecmap(fenetre)
 
 class menu:
     def __init__(self):
@@ -147,6 +165,8 @@ class affichage():
             fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
             fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
+        elif "fjord" in map:
+            fond = pygame.image.load("battle/Battlebacks/icecave.png")
         clock = pygame.time.Clock()
         my_font = pygame.font.SysFont("Calibri", 36)
         bandeaubleue = pygame.image.load("battle/animation/Fightblue.png").convert_alpha()
@@ -160,8 +180,7 @@ class affichage():
         for i in range (42):
             for event in pygame.event.get():
                 if event.type == QUIT:  # pour pouvoir quitter le jeux
-                    pygame.quit()
-                    exit()
+                    closemenu.closemenu(fenetre)
             fenetre.blit(bandeaubleue, (811 - i * 10, 200))
             fenetre.blit(bandeaurouge, (-421 + i * 10, 200))
             i += 1
@@ -170,8 +189,7 @@ class affichage():
         for i in range(160):
             for event in pygame.event.get():
                 if event.type == QUIT:  # pour pouvoir quitter le jeux
-                    pygame.quit()
-                    exit()
+                    closemenu.closemenu(fenetre)
             fenetre.blit(bandeaubleue, (390, 200))
             fenetre.blit(bandeaurouge, (-1, 200))
 
@@ -265,6 +283,8 @@ class affichage():
             fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
             fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
+        elif "fjord" in map:
+            fond = pygame.image.load("battle/Battlebacks/icecave.png")
 
         position1 = (610, 180)  # la position du perso qui jou
         position2 = (625, 100)  # la position du perso qui attent
@@ -359,6 +379,8 @@ class affichage():
             fond = pygame.image.load("battle/Battlebacks/043-Cave01.jpg")
         elif map == "mapdepart":
             fond = pygame.image.load("battle/Battlebacks/005-Beach01.jpg")
+        elif "fjord" in map:
+            fond = pygame.image.load("battle/Battlebacks/icecave.png")
         clock = pygame.time.Clock()
         my_font = pygame.font.SysFont("Calibri", 36)
         bandeaubleue = pygame.image.load("battle/animation/Fightblue.png").convert_alpha()
@@ -378,8 +400,8 @@ class affichage():
         while i < 42:
             for event in pygame.event.get():
                 if event.type == QUIT:  # pour pouvoir quitter le jeux
-                    pygame.quit()
-                    exit()
+                    closemenu.closemenu(fenetre)
+            fenetre.blit(fond, (0,0))
             fenetre.blit(bandeaubleue, (811 - i * 10, 200))
             fenetre.blit(bandeaurouge, (-421 + i * 10, 200))
             i += 1
@@ -391,8 +413,7 @@ class affichage():
             fenetre.blit(fond, (0, 0))
             for event in pygame.event.get():
                 if event.type == QUIT:  # pour pouvoir quitter le jeux
-                    pygame.quit()
-                    exit()
+                    closemenu.closemenu(fenetre)
             fenetre.blit(bandeaubleue, (390, 200))
             fenetre.blit(bandeaurouge, (-1, 200))
             if combat.anim == 1 or combat.anim == 3 or combat.anim == 6 or combat.anim == 7 or combat.anim == 8:
@@ -484,7 +505,7 @@ class ennemi(pygame.sprite.Sprite):
 class loup(ennemi):
     def __init__(self):
         ennemi.__init__(self, "battle/imagebonhomme/ennemi/cerberus.png")
-        self.vie = 50
+        self.vie = 100
 
     def attaque(self):
         fennemi.cible()
