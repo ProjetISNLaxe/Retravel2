@@ -4,27 +4,27 @@
 
 
 import pygame
-from pygame.locals import *
-import sys
-
-
-
 pygame.init()
 
-fullscreen=open("option\\fullscreen", "r")
-fullscreenread=fullscreen.read()
-fullscreen.close()
+with open("option\\fullscreen", "r") as fullscreen:
+    fullscreenread = fullscreen.read()
 if fullscreenread == "0":
     fenetre = pygame.display.set_mode((800, 600))
 else :
     fenetre = pygame.display.set_mode((800, 600), FULLSCREEN)
+pygamelogo = pygame.image.load("launcher/pygame_logo.png").convert_alpha()
+for i in range (255):
+    fenetre.fill((255-i,255-i,255-i))
+    fenetre.blit(pygamelogo, (0,0))
+    pygame.display.flip()
+
 pygame.display.set_caption("Retravel")
 icon = pygame.image.load("logo.png").convert_alpha()
 pygame.display.set_icon(icon)
-
+from pygame.locals import *
+import sys
 from shooter.shooter_fonction import *
-from classes.perso_classes import *
-from map import *
+from maps import *
 from pygame import *
 from option import *
 
@@ -51,11 +51,16 @@ def launcher(fenetre):
     x = 0
     y = 0
 
-
-
+    retravel = pygame.image.load("launcher/retravel_logo.png").convert()
+    retravels = pygame.Surface((800, 700))
+    retravels.blit(retravel, (15,0))
     test = pygame.image.load("launcher\pixelgitan.png").convert_alpha()
     mask = pygame.mask.from_surface(test)
     rect = test.get_rect()
+    for i in range (99):
+        fenetre.fill((0,0,0))
+        fenetre.blit(retravels, (0,0-i))
+        pygame.display.flip()
     bouton0 = pygame.image.load("launcher\sprite_boutons0.png").convert_alpha()
     bouton0mask = pygame.mask.from_surface(bouton0)
     bouton1 = pygame.image.load("launcher\sprite_boutons1.png").convert_alpha()
@@ -68,6 +73,7 @@ def launcher(fenetre):
     if devmode:
         glitch = True
     clique = 0
+    k=0
 
     while 1:
         save = open("save1\\save", "r")
@@ -86,6 +92,9 @@ def launcher(fenetre):
                 y = event.pos[1]
             if event.type == MOUSEBUTTONDOWN and event.button == 1:
                 if clique == 1:
+                    fenetre.fill((0,0,0))
+                    fenetre.blit(retravel, (15, -99))
+                    pygame.display.flip()
                     if passshooter == 0:
                         ok = shooter(fenetre, glitch)
                         if ok == 1:
@@ -163,7 +172,10 @@ def launcher(fenetre):
             clique = 3
         else:
             clique = 0
-
+        k+=1
+        if 255-k>=0:
+            retravels.set_alpha(255 - k)
+            fenetre.blit(retravels, (0,-99))
         clock.tick(60)
         pygame.display.flip()
 
