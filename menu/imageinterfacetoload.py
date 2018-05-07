@@ -33,3 +33,10 @@ onglet=ongletli[0]
 alphabet="abcdefghijklmnopqrstuvwxyz"
 alphabet=list(alphabet)
 inventaireimage = pygame.image.load("menu/inventory/objetinventaire.png").convert_alpha()
+portionvie=pygame.image.load("menu/inventory/portionvie.png").convert_alpha()
+portionxp=pygame.image.load("menu/inventory/portionxp.png").convert_alpha()
+listechiffre_miniature=[]
+for i in range(10):
+    listechiffre_miniature.append(pygame.image.load("menu/inventory/chiffre_miniature/"+str(i)+".png").convert_alpha())
+
+slash=pygame.image.load("menu/inventory/chiffre_miniature/slash.png").convert_alpha()

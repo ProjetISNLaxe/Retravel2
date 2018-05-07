@@ -67,6 +67,18 @@ def invent(fenetre):
     inc = 0
     emplacementperso = emplacementperso0  # animation de l'emplacement avec le skin perso
     onglet = ongletli[0]
+    with open("save1/pv/pvp1", "r") as pvp1:
+        pv = int(pvp1.read())
+    pourcentpv1=int(pv/150*100)
+    with open("save1/pv/pvp2", "r") as pvp2:
+        pv2 = int(pvp2.read())
+    pourcentpv2=int(pv2/200*100)
+    with open("save1/niveau+xp/nivp1", "r") as nvp1re:
+        nvp1 = int(nvp1re.read())
+    with open("save1/niveau+xp/xpp1", "r") as xpp1re:
+        xpp1 = int(xpp1re.read())
+    pourcentxp1=int((xpp1/(nvp1*50))*100)
+    lisnv=list(str(nvp1))
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -140,12 +152,33 @@ def invent(fenetre):
 
         # Blit des différentes images
         fenetre.blit(fond, (0, 0))
+
+        for i in range (pourcentpv1):
+            if 50+2*i<239:
+                fenetre.blit(portionvie, (50+2*i,531))
+        for i in range (pourcentpv2):
+            if 50+2*i<239:
+                fenetre.blit(portionvie, (50+2*i,422))
+        for i in range (pourcentxp1):
+            if 50+2*i<239:
+                fenetre.blit(portionxp, (35+2*i,587))
+
+        print(pourcentxp1)
         fenetre.blit(emplacementperso, (0, 70))
         emplacementperso.blit(perso0, (75, 75))
         fenetre.blit(bandeauhaut, (0, 0))
         fenetre.blit(interfaceinvent, (288, 70))
         interfaceinvent.blit(onglet, (0, 18))
         fenetre.blit(stuff_actuel, (0, 263))
+        fenetre.blit(police.render(str(pv) + " / 150", True, (0, 0, 0)), (50, 510))
+        fenetre.blit(police.render(str(pv2) + " / 200", True, (0, 0, 0)), (50, 401))
+        for i in range (len(lisnv)):
+            fenetre.blit(listechiffre_miniature[int(lisnv[i])], (23+4*i, 588))
+        for i in range (len(str(xpp1))):
+            fenetre.blit(listechiffre_miniature[int(list(str(xpp1))[i])], (37+5*i,588))
+        fenetre.blit(slash, (37+5*(i+1), 588))
+        for j in range (len(str(nvp1*50))):
+            fenetre.blit(listechiffre_miniature[int(list(str(nvp1*50))[j])], (37+5*(i+2)+5*j,588))
         for i in range(len(inventaire)):
             if objetinventairerect[i][1] >= 150:
                 fenetre.blit(objetinventaireimage[i], objetinventairerect[i])
@@ -220,6 +253,12 @@ def queteinv(fenetre):
     inc = 0
     emplacementperso = emplacementperso0
     onglet = ongletli[2]
+    with open("save1/pv/pvp1", "r") as pvp1:
+        pv = int(pvp1.read())
+    pourcentpv1=int(pv/150*100)
+    with open("save1/pv/pvp2", "r") as pvp2:
+        pv2 = int(pvp2.read())
+    pourcentpv2=int(pv2/200*100)
     while 1:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -253,7 +292,6 @@ def queteinv(fenetre):
                 if testmask.overlap(curseurmask, (curseurrect.x - testrect.x, curseurrect.y - testrect.y)):
                     follow = True
                 if event.button == 3:
-                    print("ok")
                     for i in range(len(objetqueterect)):
                         if testrect.colliderect(objetqueterect[i]):
                             quetefi = open("menu/quetes/active", "w")
@@ -285,12 +323,21 @@ def queteinv(fenetre):
             emplacementperso = emplacementperso2
             inc = 0
         fenetre.blit(fond, (0, 0))
+        for i in range (pourcentpv1):
+            if 50+2*i<239:
+                fenetre.blit(portionvie, (50+2*i,531))
+        for i in range (pourcentpv2):
+            if 50+2*i<239:
+                fenetre.blit(portionvie, (50+2*i,422))
+
         fenetre.blit(emplacementperso, (0, 70))
         emplacementperso.blit(perso0, (75, 75))
         fenetre.blit(bandeauhaut, (0, 0))
         fenetre.blit(interfaceinvent, (288, 70))
         interfaceinvent.blit(onglet, (0, 18))
         fenetre.blit(stuff_actuel, (0, 263))
+        fenetre.blit(police.render(str(pv) + " / 150", True, (0, 0, 0)), (50, 510))
+        fenetre.blit(police.render(str(pv2) + " / 200", True, (0, 0, 0)), (50, 401))
 
         for i in range(len(quete)):
             if objetqueterect[i][1] >= 150:
@@ -338,6 +385,7 @@ def queteinv(fenetre):
                     police.render("Active", True, (0, 0, 0)), (10, 50))
         for i in range(len(lior)):
             bandeauhaut.blit(listechiffre[int(lior[i])], (720 - 22 * i, 5))
+
 
         fenetre.blit(curseur, curseurrect)
         pygame.display.flip()
